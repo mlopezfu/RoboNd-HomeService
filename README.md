@@ -11,7 +11,9 @@ cd catkin_ws/src
 
 catkin_init_workspace
 
-clone this repo
+clone this repo with the --recursive option, because dependencies are loaded as submodules
+
+git clone --recursive https://github.com/mlopezfu/RoboNd-HomeService.git
 
 cd ..
 
