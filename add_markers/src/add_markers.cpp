@@ -8,12 +8,11 @@
 
 using namespace std;
 
-//set allowable heading error (in radians) to goal pose
+
 const float headingTolerance = 0.3;
-//set allowable position error to goal pose (meters)
+
 const float positionTolerance = .5;
 
-//flag to detect if goal pose has been reached
 bool poseAchieved = false;
 
 geometry_msgs::Pose goalPose;
@@ -22,7 +21,6 @@ geometry_msgs::Pose goalPose;
 const float positionError(const geometry_msgs::Pose &bot, const geometry_msgs::Pose &goal){
   const float distance = sqrt(pow(bot.position.x-goal.position.x, 2) + pow(bot.position.y-goal.position.y,2));
 
-  //const float distance = p1.position.distance(p2.position);
   return distance;
 }
 
@@ -133,38 +131,14 @@ void publishPose(ros::NodeHandle &n, float (&pose)[7], ros::Duration &timeout){
     loop_frequency.sleep();
   }
 }
-/*
-bool checkIfTesting(){
-  //determine if running in testing mode
-  ROS_INFO("Run in test mode? Enter 0 for No or 1 for Yes");
 
-  int testing;
-  while(true){
-    if(std::cin >> testing){
-      return (bool) testing;
-    }else{
-      ROS_INFO("Please enter either 0 or 1");
-    }
-  }
-}*/
 
 int main( int argc, char** argv ){
   ros::init(argc, argv, "add_markers");
   ros::NodeHandle n;
 
-  //determine if running in testing mode
-  //if so, just immediately move on to next marker
   ros::Duration poseTimeout=ros::Duration(0.0);
-  /*
-  bool testing = checkIfTesting();
-  if(testing){
-    poseTimeout = ros::Duration(0.0);
-  }else{
-    poseTimeout = ros::Duration(150.0);
-  }*/
 
-  //send pickup pose with testing status flag
-  //float pickupPose[7] = {-1.16, 1.64, 0.03, 0, 0, 1.0, 0};
   float pickupPose[7] = {-5.16, 2.64, 0.03, 0, 0, 1.0, 0};
   ROS_INFO("Publishing pick up pose marker.");
   publishPose(n, pickupPose, poseTimeout);
