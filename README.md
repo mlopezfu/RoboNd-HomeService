@@ -13,7 +13,7 @@ catkin_init_workspace
 
 clone this repo with the --recursive option, because dependencies are loaded as submodules
 
-git clone --recursive https://github.com/mlopezfu/RoboNd-HomeService.git
+git clone --recursive https://github.com/mlopezfu/RoboNd-HomeService.git .
 
 cd ..
 
